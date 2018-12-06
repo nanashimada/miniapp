@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col s12 m7">
+    <div class="card">
+      <% @messages.each do |message| %>
+        <div>
+          <div class="card-image">
+            <img src="<%= message.image %>">
+          </div>
+          <div class="card-content center">
+            <%= message.message %>
+          </div>
+          <% if user_signed_in? && current_user.id == message.user_id %>
+            <div class="waves-effect waves-light pink lighten-3 btn">
+              <%= link_to 'edit', "/messages/#{message.id}/edit", method: :get %>
+            </div>
+            <div class="waves-effect waves-light pink lighten-3 btn">
+              <%= link_to 'delete', "/messages/#{message.id}", method: :delete %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <%= paginate(@messages) %>
+    </div>
+  </div>
+</div>
+

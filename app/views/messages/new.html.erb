@@ -1,0 +1,18 @@
+
+<div class="row">
+  <%= form_for @message, url: messages_path do |f| %>
+    <div class="field">
+      <%= f.label :message, "Message" %><br>
+      <%= f.text_field :message %>
+    </div>
+    <div class="field">
+      <%= f.label :image, "ImageURL"%><br>
+      <%= f.text_field :image %>
+    </div>
+    <div class="waves-effect waves-light btn">
+      <%= f.submit "SEND" %>
+    </div>
+  <% end %>
+</div>
+
+

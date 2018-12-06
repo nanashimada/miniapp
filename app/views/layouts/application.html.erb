@@ -7,9 +7,35 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+     <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
+
   </head>
 
   <body>
+    <nav class="orange lighten-2">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">miniapp</a>
+          <% if user_signed_in? %>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><%= link_to "SignOut", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "New", new_message_path, method: :get %></li>
+            </ul>
+          <% else %>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><%= link_to "新規登録", new_user_registration_path, method: :get %></li>
+              <li><%= link_to "SignIn", user_session_path, method: :post %></li>
+            </ul>
+          <% end %>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
